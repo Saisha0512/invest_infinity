@@ -7,16 +7,51 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
+# Frontend
+node_modules/
+frontend/node_modules/
+
+dist/
+frontend/dist/
+
 dist-ssr
 *.local
 
-# Editor directories and files
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ML Models
+*.h5
+*.keras
+*.joblib
+*.pkl
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor files
 .vscode/*
 !.vscode/extensions.json
+
 .idea
+
 .DS_Store
+
 *.suo
 *.ntvs*
 *.njsproj
