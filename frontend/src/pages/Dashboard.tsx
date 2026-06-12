@@ -1,23 +1,18 @@
 import { useState } from "react";
-
-const STOCKS = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA"];
-const MODELS = ["LSTM", "GRU"];
-const HORIZONS = [7, 30, 60, 90];
+import StockSelector from "@/components/StockSelector";
+import ModelSelector, { type ForecastModel } from "@/components/ModelSelector";
+import ForecastHorizonSelector, {
+  type ForecastHorizon,
+} from "@/components/ForecastHorizonSelector";
 
 export default function Dashboard() {
   const [selectedStocks, setSelectedStocks] = useState<string[]>([
     "AAPL",
     "MSFT",
   ]);
-  const [model, setModel] = useState("LSTM");
-  const [horizon, setHorizon] = useState(30);
+  const [model, setModel] = useState<ForecastModel>("LSTM");
+  const [horizon, setHorizon] = useState<ForecastHorizon>(30);
   const [generated, setGenerated] = useState(false);
-
-  const toggleStock = (s: string) => {
-    setSelectedStocks((prev) =>
-      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
-    );
-  };
 
   const cardStyle = {
     background: "rgba(255,255,255,0.03)",
@@ -52,109 +47,22 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Stock Selector */}
           <div className="lg:col-span-2 p-6 rounded-xl" style={cardStyle}>
-            <h2
-              className="text-sm font-semibold mb-4"
-              style={{ color: "#e2e8f0" }}
-            >
-              Select Stocks
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {STOCKS.map((s) => {
-                const active = selectedStocks.includes(s);
-                return (
-                  <button
-                    key={s}
-                    onClick={() => toggleStock(s)}
-                    className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                    style={
-                      active
-                        ? {
-                            background:
-                              "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-                            color: "#fff",
-                          }
-                        : {
-                            background: "rgba(255,255,255,0.04)",
-                            color: "#94a3b8",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                          }
-                    }
-                  >
-                    {s}
-                  </button>
-                );
-              })}
-            </div>
+            <StockSelector
+              selected={selectedStocks}
+              onChange={setSelectedStocks}
+            />
           </div>
 
           {/* Model Selector */}
           <div className="p-6 rounded-xl" style={cardStyle}>
-            <h2
-              className="text-sm font-semibold mb-4"
-              style={{ color: "#e2e8f0" }}
-            >
-              Forecasting Model
-            </h2>
-            <div className="flex gap-2">
-              {MODELS.map((m) => (
-                <button
-                  key={m}
-                  onClick={() => setModel(m)}
-                  className="flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                  style={
-                    model === m
-                      ? {
-                          background: "rgba(0,212,255,0.12)",
-                          color: "#00d4ff",
-                          border: "1px solid rgba(0,212,255,0.3)",
-                        }
-                      : {
-                          background: "rgba(255,255,255,0.04)",
-                          color: "#94a3b8",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                        }
-                  }
-                >
-                  {m}
-                </button>
-              ))}
-            </div>
+            <ModelSelector selected={model} onChange={setModel} />
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Horizon Selector */}
           <div className="p-6 rounded-xl" style={cardStyle}>
-            <h2
-              className="text-sm font-semibold mb-4"
-              style={{ color: "#e2e8f0" }}
-            >
-              Forecast Horizon
-            </h2>
-            <div className="flex gap-2 flex-wrap">
-              {HORIZONS.map((h) => (
-                <button
-                  key={h}
-                  onClick={() => setHorizon(h)}
-                  className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                  style={
-                    horizon === h
-                      ? {
-                          background: "rgba(123,94,167,0.18)",
-                          color: "#c4b5fd",
-                          border: "1px solid rgba(123,94,167,0.4)",
-                        }
-                      : {
-                          background: "rgba(255,255,255,0.04)",
-                          color: "#94a3b8",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                        }
-                  }
-                >
-                  {h} days
-                </button>
-              ))}
-            </div>
+            <ForecastHorizonSelector selected={horizon} onChange={setHorizon} />
           </div>
 
           {/* Generate Button */}
