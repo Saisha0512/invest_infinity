@@ -1,12 +1,10 @@
+import { colors, styles } from "@/lib/theme";
+
 export default function Footer() {
   return (
     <footer
       className="px-6 py-6 mt-auto"
-      style={{
-        background:
-          "linear-gradient(135deg, #0a0f1e 0%, #0d1529 60%, #0a1020 100%)",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-      }}
+      style={{ ...styles.navFooter, borderTop: `1px solid ${colors.border}` }}
     >
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-3 text-center">
         <img
@@ -15,11 +13,11 @@ export default function Footer() {
           className="h-8 w-auto object-contain"
         />
 
-        <p className="text-sm" style={{ color: "#94a3b8" }}>
+        <p className="text-sm" style={{ color: colors.textSecondary }}>
           <b>Thank you for visiting Invest Infinity!</b>
         </p>
 
-        <p className="text-xs" style={{ color: "#475569" }}>
+        <p className="text-xs" style={{ color: colors.textFaint }}>
           © {new Date().getFullYear()} Invest Infinity. All rights reserved.
         </p>
       </div>

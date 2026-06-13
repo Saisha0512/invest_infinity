@@ -1,3 +1,5 @@
+import { colors, styles } from "@/lib/theme";
+
 const AVAILABLE_STOCKS = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA"];
 
 interface StockSelectorProps {
@@ -23,7 +25,10 @@ export default function StockSelector({
 
   return (
     <div>
-      <h2 className="text-sm font-semibold mb-4" style={{ color: "#e2e8f0" }}>
+      <h2
+        className="text-sm font-semibold mb-4"
+        style={{ color: colors.textPrimary }}
+      >
         Select Stocks
       </h2>
       <div className="flex flex-wrap gap-2">
@@ -35,18 +40,7 @@ export default function StockSelector({
               type="button"
               onClick={() => toggleStock(symbol)}
               className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-              style={
-                active
-                  ? {
-                      background: "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-                      color: "#fff",
-                    }
-                  : {
-                      background: "rgba(255,255,255,0.04)",
-                      color: "#94a3b8",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }
-              }
+              style={active ? styles.pillActive : styles.pillInactive}
             >
               {symbol}
             </button>
@@ -54,7 +48,7 @@ export default function StockSelector({
         })}
       </div>
       {maxSelection && (
-        <p className="text-xs mt-2" style={{ color: "#64748b" }}>
+        <p className="text-xs mt-2" style={{ color: colors.textMuted }}>
           {selected.length}/{maxSelection} selected
         </p>
       )}
