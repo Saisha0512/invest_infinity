@@ -135,7 +135,7 @@ export default function Home() {
             className="px-8 py-3 rounded-lg font-semibold text-sm transition-all duration-200"
             style={styles.buttonPrimary}
           >
-            Get Started Free
+            Get Started!
           </Link>
           <Link
             to="/about"
@@ -149,7 +149,7 @@ export default function Home() {
         {/* Mini stats */}
         <div className="mt-16 grid grid-cols-3 gap-8 text-center">
           {[
-            ["6+", "Stock Symbols"],
+            ["10+", "Stock Symbols"],
             ["2", "DL Models"],
             ["4", "Time Horizons"],
           ].map(([val, label]) => (
