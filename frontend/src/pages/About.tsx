@@ -1,5 +1,8 @@
+import { colors, styles } from "@/lib/theme";
+
 const objectives = [
   "Forecast stock prices using LSTM and GRU deep learning models",
+  "Run both models simultaneously and let users compare results before optimization",
   "Generate optimized portfolios using Modern Portfolio Theory",
   "Provide clear risk and performance analytics for any portfolio",
   "Allow usage without an account, with optional history saving",
@@ -8,6 +11,7 @@ const objectives = [
 const features = [
   "Multi-stock forecasting with adjustable time horizons",
   "Side-by-side LSTM vs GRU model comparison",
+  "User-selected model determines portfolio optimization input",
   "Portfolio allocation and rebalancing suggestions",
   "Risk metrics: Sharpe Ratio, Volatility, VaR, CVaR",
   "Interactive charts powered by Recharts",
@@ -39,33 +43,25 @@ const future = [
 ];
 
 export default function About() {
-  const cardStyle = {
-    background: "rgba(255,255,255,0.03)",
-    border: "1px solid rgba(255,255,255,0.06)",
-  };
-
   return (
-    <div
-      className="min-h-screen px-6 py-12"
-      style={{
-        background:
-          "linear-gradient(135deg, #0a0f1e 0%, #0d1529 50%, #0a1020 100%)",
-      }}
-    >
+    <div className="px-6 py-12" style={styles.page}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-12 text-center">
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "#00d4ff" }}
+            style={styles.eyebrow}
           >
             About the Project
           </p>
-          <h1 className="text-4xl font-bold mb-4" style={{ color: "#e2e8f0" }}>
+          <h1
+            className="text-4xl font-bold mb-4"
+            style={{ color: colors.textPrimary }}
+          >
             Invest Infinity
           </h1>
           <p
             className="text-sm leading-relaxed max-w-2xl mx-auto"
-            style={{ color: "#94a3b8" }}
+            style={{ color: colors.textSecondary }}
           >
             Invest Infinity is an AI-powered platform that combines deep
             learning stock forecasting with Modern Portfolio Theory, giving
@@ -75,27 +71,32 @@ export default function About() {
         </div>
 
         {/* Overview */}
-        <div className="p-6 rounded-xl mb-8" style={cardStyle}>
+        <div className="p-6 rounded-xl mb-8" style={styles.card}>
           <h2
             className="text-sm font-semibold mb-3"
-            style={{ color: "#e2e8f0" }}
+            style={{ color: colors.textPrimary }}
           >
             Project Overview
           </h2>
-          <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ color: colors.textSecondary }}
+          >
             The platform follows a clear pipeline: users select stocks,
-            historical data is fetched and preprocessed, LSTM or GRU models
-            generate forecasts, and those forecasts feed into a portfolio
-            optimization and risk analysis stage. Results are presented through
-            an interactive visualization dashboard.
+            historical data is fetched and preprocessed, and both LSTM and GRU
+            models generate forecasts simultaneously. Users compare the two
+            models' accuracy and projected portfolio outcomes, then choose one
+            model's results to feed into portfolio optimization and risk
+            analysis. Results are presented through an interactive visualization
+            dashboard.
           </p>
         </div>
 
         {/* Objectives */}
-        <div className="p-6 rounded-xl mb-8" style={cardStyle}>
+        <div className="p-6 rounded-xl mb-8" style={styles.card}>
           <h2
             className="text-sm font-semibold mb-4"
-            style={{ color: "#e2e8f0" }}
+            style={{ color: colors.textPrimary }}
           >
             Objectives
           </h2>
@@ -104,11 +105,11 @@ export default function About() {
               <li
                 key={o}
                 className="flex items-start gap-3 text-sm"
-                style={{ color: "#94a3b8" }}
+                style={{ color: colors.textSecondary }}
               >
                 <span
                   className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: "#00d4ff" }}
+                  style={{ background: colors.purpleLight }}
                 />
                 {o}
               </li>
@@ -117,10 +118,10 @@ export default function About() {
         </div>
 
         {/* Features */}
-        <div className="p-6 rounded-xl mb-8" style={cardStyle}>
+        <div className="p-6 rounded-xl mb-8" style={styles.card}>
           <h2
             className="text-sm font-semibold mb-4"
-            style={{ color: "#e2e8f0" }}
+            style={{ color: colors.textPrimary }}
           >
             Features
           </h2>
@@ -129,14 +130,11 @@ export default function About() {
               <div
                 key={f}
                 className="flex items-start gap-3 text-sm p-3 rounded-lg"
-                style={{
-                  background: "rgba(255,255,255,0.02)",
-                  color: "#94a3b8",
-                }}
+                style={{ ...styles.statTile, color: colors.textSecondary }}
               >
                 <span
                   className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: "#7b5ea7" }}
+                  style={{ background: colors.purpleLight }}
                 />
                 {f}
               </div>
@@ -145,10 +143,10 @@ export default function About() {
         </div>
 
         {/* Tech Stack */}
-        <div className="p-6 rounded-xl mb-8" style={cardStyle}>
+        <div className="p-6 rounded-xl mb-8" style={styles.card}>
           <h2
             className="text-sm font-semibold mb-4"
-            style={{ color: "#e2e8f0" }}
+            style={{ color: colors.textPrimary }}
           >
             Tech Stack
           </h2>
@@ -157,7 +155,7 @@ export default function About() {
               <div key={s.group}>
                 <div
                   className="text-xs font-semibold tracking-widest uppercase mb-2"
-                  style={{ color: "#00d4ff" }}
+                  style={styles.eyebrow}
                 >
                   {s.group}
                 </div>
@@ -167,9 +165,9 @@ export default function About() {
                       key={i}
                       className="px-2.5 py-1 rounded-md text-xs"
                       style={{
-                        background: "rgba(0,212,255,0.05)",
-                        border: "1px solid rgba(0,212,255,0.12)",
-                        color: "#cbd5e1",
+                        background: colors.accentBg,
+                        border: `1px solid ${colors.accentBorder}`,
+                        color: colors.textSecondary,
                       }}
                     >
                       {i}
@@ -182,10 +180,10 @@ export default function About() {
         </div>
 
         {/* Future Enhancements */}
-        <div className="p-6 rounded-xl" style={cardStyle}>
+        <div className="p-6 rounded-xl" style={styles.card}>
           <h2
             className="text-sm font-semibold mb-4"
-            style={{ color: "#e2e8f0" }}
+            style={{ color: colors.textPrimary }}
           >
             Future Enhancements
           </h2>
@@ -194,11 +192,11 @@ export default function About() {
               <li
                 key={f}
                 className="flex items-start gap-3 text-sm"
-                style={{ color: "#94a3b8" }}
+                style={{ color: colors.textSecondary }}
               >
                 <span
                   className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: "#a78bfa" }}
+                  style={{ background: colors.purpleLight }}
                 />
                 {f}
               </li>

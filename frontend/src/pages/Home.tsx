@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { colors, styles } from "@/lib/theme";
 
 const features = [
   {
@@ -39,17 +40,25 @@ const workflow = [
     label: "Select Stocks",
     desc: "Pick from AAPL, MSFT, GOOGL and more",
   },
-  { step: "02", label: "Choose Model", desc: "LSTM or GRU forecasting engine" },
-  { step: "03", label: "Set Horizon", desc: "7, 30, 60, or 90 day outlook" },
+  {
+    step: "02",
+    label: "Generate Forecasts",
+    desc: "LSTM and GRU run together",
+  },
+  {
+    step: "03",
+    label: "Compare Results",
+    desc: "Review accuracy and projected metrics",
+  },
   {
     step: "04",
-    label: "Run Forecast",
-    desc: "Deep learning predictions in seconds",
+    label: "Choose a Model",
+    desc: "Pick which model's results to use",
   },
   {
     step: "05",
     label: "Optimize Portfolio",
-    desc: "MPT-based allocation recommendations",
+    desc: "MPT-based allocation for the chosen model",
   },
   {
     step: "06",
@@ -69,13 +78,7 @@ const techStack = [
 
 export default function Home() {
   return (
-    <div
-      className="min-h-screen"
-      style={{
-        background:
-          "linear-gradient(135deg, #0a0f1e 0%, #0d1529 50%, #0a1020 100%)",
-      }}
-    >
+    <div style={styles.page}>
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center px-6 pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -88,8 +91,7 @@ export default function Home() {
               width: 600,
               height: 600,
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%)",
+              background: `radial-gradient(circle, ${colors.accentBg} 0%, transparent 70%)`,
             }}
           />
         </div>
@@ -97,12 +99,15 @@ export default function Home() {
         <div
           className="mb-6 flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-medium"
           style={{
-            borderColor: "rgba(0,212,255,0.25)",
-            color: "#00d4ff",
-            background: "rgba(0,212,255,0.08)",
+            borderColor: colors.accentBorder,
+            color: colors.accentText,
+            background: colors.accentBg,
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+          <span
+            className="w-1.5 h-1.5 rounded-full animate-pulse"
+            style={{ background: colors.cyan }}
+          />
           AI-Powered Investment Intelligence
         </div>
 
@@ -110,19 +115,15 @@ export default function Home() {
           className="text-5xl md:text-7xl font-bold tracking-tight mb-6 max-w-4xl"
           style={{ lineHeight: 1.1 }}
         >
-          <span style={{ color: "#e2e8f0" }}>Forecast Smarter.</span> <br />
-          <span
-            style={{
-              background: "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Invest Better.
-          </span>
+          <span style={{ color: colors.textPrimary }}>Forecast Smarter.</span>{" "}
+          <br />
+          <span style={styles.brandText}>Invest Better.</span>
         </h1>
 
-        <p className="text-lg max-w-2xl mb-10" style={{ color: "#94a3b8" }}>
+        <p
+          className="text-lg max-w-2xl mb-10"
+          style={{ color: colors.textSecondary }}
+        >
           Invest Infinity combines deep learning stock forecasting with Modern
           Portfolio Theory to help you make data-driven investment decisions —
           no finance degree required.
@@ -132,22 +133,14 @@ export default function Home() {
           <Link
             to="/dashboard"
             className="px-8 py-3 rounded-lg font-semibold text-sm transition-all duration-200"
-            style={{
-              background: "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-              color: "#fff",
-              boxShadow: "0 0 24px rgba(0,212,255,0.25)",
-            }}
+            style={styles.buttonPrimary}
           >
             Get Started Free
           </Link>
           <Link
             to="/about"
-            className="px-8 py-3 rounded-lg font-semibold text-sm border transition-all duration-200"
-            style={{
-              borderColor: "rgba(123,94,167,0.4)",
-              color: "#c4b5fd",
-              background: "rgba(123,94,167,0.08)",
-            }}
+            className="px-8 py-3 rounded-lg font-semibold text-sm transition-all duration-200"
+            style={styles.buttonSecondary}
           >
             Learn More
           </Link>
@@ -161,10 +154,13 @@ export default function Home() {
             ["4", "Time Horizons"],
           ].map(([val, label]) => (
             <div key={label}>
-              <div className="text-3xl font-bold" style={{ color: "#00d4ff" }}>
+              <div
+                className="text-3xl font-bold"
+                style={{ color: colors.accentText }}
+              >
                 {val}
               </div>
-              <div className="text-xs mt-1" style={{ color: "#64748b" }}>
+              <div className="text-xs mt-1" style={{ color: colors.textMuted }}>
                 {label}
               </div>
             </div>
@@ -177,11 +173,14 @@ export default function Home() {
         <div className="text-center mb-12">
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "#00d4ff" }}
+            style={styles.eyebrow}
           >
             How It Works
           </p>
-          <h2 className="text-3xl font-bold" style={{ color: "#e2e8f0" }}>
+          <h2
+            className="text-3xl font-bold"
+            style={{ color: colors.textPrimary }}
+          >
             From Data to Decision in 6 Steps
           </h2>
         </div>
@@ -190,32 +189,29 @@ export default function Home() {
             <div
               key={w.step}
               className="relative flex flex-col items-center text-center p-4 rounded-xl"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
+              style={styles.card}
             >
               {i < workflow.length - 1 && (
                 <div
                   className="hidden lg:block absolute top-8 right-0 translate-x-1/2 text-xs"
-                  style={{ color: "#334155" }}
+                  style={{ color: colors.border }}
                 >
                   →
                 </div>
               )}
               <div
                 className="text-xs font-mono font-bold mb-2"
-                style={{ color: "#00d4ff" }}
+                style={{ color: colors.accentText }}
               >
                 {w.step}
               </div>
               <div
                 className="text-sm font-semibold mb-1"
-                style={{ color: "#e2e8f0" }}
+                style={{ color: colors.textPrimary }}
               >
                 {w.label}
               </div>
-              <div className="text-xs" style={{ color: "#64748b" }}>
+              <div className="text-xs" style={{ color: colors.textMuted }}>
                 {w.desc}
               </div>
             </div>
@@ -232,11 +228,14 @@ export default function Home() {
           <div className="text-center mb-12">
             <p
               className="text-xs font-semibold tracking-widest uppercase mb-2"
-              style={{ color: "#7b5ea7" }}
+              style={{ color: colors.purpleLight }}
             >
               Features
             </p>
-            <h2 className="text-3xl font-bold" style={{ color: "#e2e8f0" }}>
+            <h2
+              className="text-3xl font-bold"
+              style={{ color: colors.textPrimary }}
+            >
               Everything You Need
             </h2>
           </div>
@@ -244,22 +243,19 @@ export default function Home() {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 rounded-xl transition-all duration-200 group"
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}
+                className="p-6 rounded-xl transition-all duration-200"
+                style={styles.card}
               >
                 <div className="text-2xl mb-4">{f.icon}</div>
                 <h3
                   className="text-sm font-semibold mb-2"
-                  style={{ color: "#e2e8f0" }}
+                  style={{ color: colors.textPrimary }}
                 >
                   {f.title}
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "#64748b" }}
+                  style={{ color: colors.textMuted }}
                 >
                   {f.desc}
                 </p>
@@ -274,11 +270,14 @@ export default function Home() {
         <div className="text-center mb-12">
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "#00d4ff" }}
+            style={styles.eyebrow}
           >
             Built With
           </p>
-          <h2 className="text-3xl font-bold" style={{ color: "#e2e8f0" }}>
+          <h2
+            className="text-3xl font-bold"
+            style={{ color: colors.textPrimary }}
+          >
             Technology Stack
           </h2>
         </div>
@@ -288,17 +287,20 @@ export default function Home() {
               key={t.name}
               className="px-5 py-3 rounded-lg text-center"
               style={{
-                background: "rgba(0,212,255,0.05)",
-                border: "1px solid rgba(0,212,255,0.15)",
+                background: colors.accentBg,
+                border: `1px solid ${colors.accentBorder}`,
               }}
             >
               <div
                 className="text-sm font-semibold"
-                style={{ color: "#e2e8f0" }}
+                style={{ color: colors.textPrimary }}
               >
                 {t.name}
               </div>
-              <div className="text-xs mt-0.5" style={{ color: "#64748b" }}>
+              <div
+                className="text-xs mt-0.5"
+                style={{ color: colors.textMuted }}
+              >
                 {t.role}
               </div>
             </div>
@@ -311,26 +313,24 @@ export default function Home() {
         <div
           className="max-w-2xl mx-auto p-12 rounded-2xl"
           style={{
-            background:
-              "linear-gradient(135deg, rgba(0,212,255,0.06), rgba(123,94,167,0.1))",
-            border: "1px solid rgba(123,94,167,0.2)",
+            background: `linear-gradient(135deg, ${colors.accentBg}, ${colors.selectedBg})`,
+            border: `1px solid ${colors.selectedBorder}`,
           }}
         >
-          <h2 className="text-3xl font-bold mb-4" style={{ color: "#e2e8f0" }}>
+          <h2
+            className="text-3xl font-bold mb-4"
+            style={{ color: colors.textPrimary }}
+          >
             Ready to Invest Smarter?
           </h2>
-          <p className="text-sm mb-8" style={{ color: "#94a3b8" }}>
+          <p className="text-sm mb-8" style={{ color: colors.textSecondary }}>
             No account required. Start forecasting stocks and optimizing your
             portfolio right now.
           </p>
           <Link
             to="/dashboard"
-            className="inline-block px-10 py-3 rounded-lg font-semibold text-sm"
-            style={{
-              background: "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-              color: "#fff",
-              boxShadow: "0 0 32px rgba(0,212,255,0.2)",
-            }}
+            className="inline-block px-10 py-3 rounded-lg font-semibold text-sm transition-all"
+            style={styles.buttonPrimary}
           >
             Open Dashboard
           </Link>

@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { colors, styles } from "@/lib/theme";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,17 +17,16 @@ export default function Navbar() {
     <nav
       className="sticky top-0 z-50 flex items-center justify-between px-4 py-2"
       style={{
-        background:
-          "linear-gradient(135deg, #0a0f1e 0%, #0d1529 60%, #0a1020 100%)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        ...styles.navFooter,
+        borderBottom: `1px solid ${colors.border}`,
       }}
     >
-      {/* Logo — top left, larger, no extra padding/box */}
+      {/* Logo — top left */}
       <Link to="/" className="flex items-center -my-1">
         <img
           src="/logo.png"
           alt="Invest Infinity"
-          className="h-24 w-auto object-contain"
+          className="h-16 w-auto object-contain"
         />
       </Link>
 
@@ -34,8 +34,8 @@ export default function Navbar() {
       <div
         className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full absolute left-1/2 -translate-x-1/2"
         style={{
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: colors.surfaceHover,
+          border: `1px solid ${colors.borderStrong}`,
           boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
         }}
       >
@@ -47,13 +47,7 @@ export default function Navbar() {
               to={l.to}
               className="px-4 py-1.5 rounded-full text-sm font-medium transition-all"
               style={
-                active
-                  ? {
-                      background: "rgba(0,212,255,0.12)",
-                      color: "#00d4ff",
-                      boxShadow: "0 0 0 1px rgba(0,212,255,0.25) inset",
-                    }
-                  : { color: "#94a3b8" }
+                active ? styles.pillActive : { color: colors.textSecondary }
               }
             >
               {l.label}
@@ -66,11 +60,7 @@ export default function Navbar() {
       <Link
         to="/login"
         className="px-4 py-1.5 rounded-lg text-sm font-medium transition-all"
-        style={{
-          background: "linear-gradient(90deg, #00d4ff, #7b5ea7)",
-          color: "#fff",
-          boxShadow: "0 0 16px rgba(0,212,255,0.18)",
-        }}
+        style={styles.buttonPrimary}
       >
         Login
       </Link>
